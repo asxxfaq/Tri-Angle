@@ -3,6 +3,8 @@ import AdminSidebar from '../../components/AdminSidebar';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
 
+const MEDIA_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '');
+
 const EMPTY = { name:'', gender:'male', phone:'', skills:'', experience:'', age:'', collegeName:'', notes:'', status:'active', availability: true };
 
 const AdminStaff = () => {
@@ -124,7 +126,7 @@ const AdminStaff = () => {
                     <td>
                       <div style={{ display:'flex', alignItems:'center', gap:12 }}>
                         {s.photo
-                          ? <img src={`http://localhost:5000${s.photo}`} alt={s.name} style={{ width:36, height:36, borderRadius:'50%', objectFit:'cover' }} />
+                          ? <img src={`${MEDIA_BASE}${s.photo}`} alt={s.name} style={{ width:36, height:36, borderRadius:'50%', objectFit:'cover' }} />
                           : <div style={{ width:36, height:36, borderRadius:'50%', background:'var(--bg-secondary)', display:'flex', alignItems:'center', justifyContent:'center' }}>{s.gender==='female'?'👩':'👨'}</div>
                         }
                         <div>

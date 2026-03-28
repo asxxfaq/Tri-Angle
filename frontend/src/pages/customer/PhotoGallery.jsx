@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 
-const BASE = 'http://localhost:5000/images/';
+const BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '') + '/images/';
 const photos = Array.from({ length: 10 }, (_, i) => ({
   src: `${BASE}image${i + 1}.jpg`,
   alt: `TRI-ANGLE Team Photo ${i + 1}`,

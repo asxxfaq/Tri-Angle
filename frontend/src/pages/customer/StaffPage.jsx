@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import api from '../../api/axios';
 
+const MEDIA_BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '');
+
 const StaffPage = () => {
   const [staff, setStaff] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -74,7 +76,7 @@ const StaffPage = () => {
                 <div key={s._id} className="staff-card">
                   {s.photo
                     ? <img
-                        src={`http://localhost:5000${s.photo}`}
+                        src={`${MEDIA_BASE}${s.photo}`}
                         alt={s.name}
                         className="staff-avatar"
                         onError={e => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
