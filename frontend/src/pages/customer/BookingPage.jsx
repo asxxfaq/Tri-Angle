@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import api from '../../api/axios';
 import toast from 'react-hot-toast';
+import CalendarPicker from '../../components/CalendarPicker';
 
 const BookingPage = () => {
   const [eventTypes, setEventTypes] = useState([]);
@@ -99,12 +100,12 @@ const BookingPage = () => {
                 <h3 style={{ marginBottom:20, color:'var(--gold)' }}>📋 Event Details</h3>
                 <div className="grid-2" style={{ gap:16 }}>
                   <div className="form-group">
-                    <label className="form-label">Event Name / Occasion *</label>
-                    <input className="form-input" placeholder="e.g. Ramesh & Priya Wedding" value={form.eventName} onChange={set('eventName')} required />
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Event Date *</label>
-                    <input type="date" className="form-input" min={new Date().toISOString().split('T')[0]} value={form.eventDate} onChange={set('eventDate')} required />
+                    <label className="form-label" style={{ marginBottom: 12 }}>Event Date *</label>
+                    <CalendarPicker 
+                      selectedDate={form.eventDate} 
+                      onChange={(date) => setForm(p => ({ ...p, eventDate: date }))}
+                      minDate={new Date().toISOString().split('T')[0]}
+                    />
                   </div>
                   <div className="form-group">
                     <label className="form-label">Event Time *</label>

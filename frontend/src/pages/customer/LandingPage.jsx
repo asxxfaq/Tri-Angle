@@ -124,6 +124,106 @@ function TestimonialsCarousel() {
   );
 }
 
+const faqs = [
+  { q: 'How early should I book?', a: 'We recommend booking at least 2-4 weeks in advance for regular events, and 2-3 months for large weddings to ensure staff availability.' },
+  { q: 'Do you provide uniforms for the staff?', a: 'Yes, all our staff members arrive in neat, professional uniforms (white shirt/sari with black trousers/skirts) provided by TRI-ANGLE.' },
+  { q: 'What are your travel charges?', a: 'For events within Kasaragod town, there are no travel charges. For other locations, a nominal travel fee is applied based on the distance.' },
+  { q: 'Can I choose specific staff members?', a: 'While we try to accommodate requests for staff who have worked with you before, assignments are generally based on availability and event requirements.' },
+  { q: 'How do I pay for the service?', a: 'A small advance is required to confirm the booking. The remaining balance can be paid via UPI, bank transfer, or cash on the day of the event.' },
+];
+
+function PriceEstimator() {
+  const [staff, setStaff] = useState(5);
+  const [hours, setHours] = useState(8);
+  const [dist, setDist] = useState(10);
+  const [ref, visible] = useReveal();
+
+  const total = (staff * 850) + (dist * 10);
+
+  return (
+    <section className="section" id="estimate" style={{ background:'var(--bg-secondary)' }}>
+      <div className="container">
+        <div className="grid-2" style={{ gap:64, alignItems:'center' }}>
+          <RevealSection>
+            <span className="section-label">Quick Quote</span>
+            <div className="gold-divider" style={{ margin:'0 0 20px' }} />
+            <h2 className="section-title" style={{ marginBottom:20 }}>
+              Instant <span className="gradient-text">Price Estimate</span>
+            </h2>
+            <p style={{ color:'var(--text-secondary)', marginBottom:32 }}>
+              Get a quick estimate for your event. No hidden charges, transparent pricing.
+            </p>
+            <div style={{ display:'flex', flexDirection:'column', gap:24 }}>
+              <div className="form-group">
+                <label className="form-label">Number of Staff: {staff}</label>
+                <input type="range" min="1" max="50" value={staff} onChange={e => setStaff(e.target.value)} style={{ accentColor:'var(--gold)' }} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Event Duration: {hours} Hours</label>
+                <input type="range" min="4" max="24" step="2" value={hours} onChange={e => setHours(e.target.value)} style={{ accentColor:'var(--gold)' }} />
+              </div>
+              <div className="form-group">
+                <label className="form-label">Distance from Office: {dist} KM</label>
+                <input type="range" min="0" max="100" value={dist} onChange={e => setDist(e.target.value)} style={{ accentColor:'var(--gold)' }} />
+              </div>
+            </div>
+          </RevealSection>
+
+          <RevealSection style={{ animationDelay:'0.2s' }}>
+            <div className="card" style={{ textAlign:'center', padding:48, border:'1px solid var(--border-gold)', background:'rgba(212,160,41,0.03)' }}>
+              <div style={{ fontSize:'0.8rem', color:'var(--gold)', letterSpacing:'0.1em', textTransform:'uppercase', marginBottom:8 }}>Estimated Total</div>
+              <div style={{ fontSize:'4rem', fontFamily:'Cormorant Garamond,serif', color:'var(--gold-light)', lineHeight:1 }}>₹{total.toLocaleString()}</div>
+              <div style={{ height:1, background:'var(--border-gold)', margin:'32px 0' }} />
+              <div style={{ display:'flex', flexDirection:'column', gap:12, marginBottom:40 }}>
+                <div style={{ display:'flex', justifyContent:'space-between', fontSize:'0.9rem', color:'var(--text-secondary)' }}>
+                  <span>Staff Charges</span>
+                  <span>₹{(staff * 850).toLocaleString()}</span>
+                </div>
+                <div style={{ display:'flex', justifyContent:'space-between', fontSize:'0.9rem', color:'var(--text-secondary)' }}>
+                  <span>Travel Charges</span>
+                  <span>₹{(dist * 10).toLocaleString()}</span>
+                </div>
+              </div>
+              <Link to="/book" className="btn btn-primary pulse-glow" style={{ width:'100%' }}>Book This Team</Link>
+            </div>
+          </RevealSection>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQSection() {
+  const [active, setActive] = useState(null);
+  const [ref, visible] = useReveal();
+
+  return (
+    <section className="section" id="faq">
+      <div className="container">
+        <RevealSection style={{ textAlign:'center', marginBottom:60 }}>
+          <span className="section-label">Common Questions</span>
+          <div className="gold-divider" />
+          <h2 className="section-title">Frequently Asked <span className="gradient-text">Questions</span></h2>
+        </RevealSection>
+
+        <div ref={ref} className={`faq-grid ${visible ? 'revealed' : ''}`} style={{ maxWidth: 800, margin: '0 auto' }}>
+          {faqs.map((faq, i) => (
+            <div key={i} className={`faq-item ${active === i ? 'active' : ''}`} onClick={() => setActive(active === i ? null : i)}>
+              <div className="faq-question">
+                <span>{faq.q}</span>
+                <span className="faq-icon">{active === i ? '−' : '+'}</span>
+              </div>
+              <div className="faq-answer">
+                <p>{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const LandingPage = () => (
   <div style={{ minHeight:'100vh' }}>
     <Navbar />
@@ -277,6 +377,17 @@ const LandingPage = () => (
       </div>
     </section>
 
+    {/* ── PARALLAX BREAK ────────────────────────────────── */}
+    <div className="parallax-section" style={{ backgroundImage: 'url("/catering_parallax_bg.png")' }}>
+      <div className="parallax-overlay" />
+      <div className="parallax-content container">
+        <h2 style={{ fontSize: '3rem', color: 'var(--champagne)', marginBottom: 16 }}>Excellence in Every Detail</h2>
+        <p style={{ color: 'var(--text-primary)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto' }}>
+          Our trained staff ensures your guests feel like royalty, every single time.
+        </p>
+      </div>
+    </div>
+
     {/* ── HOW IT WORKS ──────────────────────────────────── */}
     <section className="section" style={{ background:'var(--bg-secondary)' }}>
       <div className="container">
@@ -317,6 +428,12 @@ const LandingPage = () => (
         <TestimonialsCarousel />
       </div>
     </section>
+
+    {/* ── PRICE ESTIMATOR ────────────────────────────────── */}
+    <PriceEstimator />
+
+    {/* ── FAQ ────────────────────────────────────────────── */}
+    <FAQSection />
 
     {/* ── CTA ───────────────────────────────────────────── */}
     <section className="section cta-section">

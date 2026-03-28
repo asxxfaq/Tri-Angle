@@ -60,12 +60,17 @@ const AppRoutes = () => {
   );
 };
 
+import WhatsAppButton from './components/WhatsAppButton';
+import CustomCursor from './components/CustomCursor';
+
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <CustomCursor />
         <AppRoutes />
         <Toaster position="top-right" toastOptions={{ style: { background: '#1e1012', color: '#fff', border: '1px solid #c9a84c' } }} />
+        <WhatsAppButton />
       </BrowserRouter>
     </AuthProvider>
   );

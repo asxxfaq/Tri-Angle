@@ -16,13 +16,18 @@ const ContactPage = () => (
               {[
                 { icon: '📍', label: 'Location', value: 'Kasaragod, Kerala, India' },
                 { icon: '📞', label: 'Phone', value: '+91 98765 43210' },
+                { icon: '💬', label: 'WhatsApp', value: '+91 98765 43210', link: 'https://wa.me/919876543210' },
                 { icon: '✉️', label: 'Email', value: 'info@trianglecatering.com' },
               ].map(c => (
                 <div key={c.label} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                   <span style={{ fontSize: '1.3rem', marginTop: 2 }}>{c.icon}</span>
                   <div>
                     <div style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 3 }}>{c.label}</div>
-                    <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{c.value}</div>
+                    {c.link ? (
+                      <a href={c.link} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textDecoration: 'none' }}>{c.value}</a>
+                    ) : (
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{c.value}</div>
+                    )}
                   </div>
                 </div>
               ))}
