@@ -10,11 +10,20 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    process.env.CLIENT_URL,
-  ].filter(Boolean),
+  origin: (origin, callback) => {
+    // Allow requests with no origin (server-to-server, mobile apps, Postman)
+    if (!origin) return callback(null, true);
+    const allowed = [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      process.env.CLIENT_URL,
+    ].filter(Boolean);
+    // Also allow any *.vercel.app domain (covers all frontend deployments)
+    if (allowed.includes(origin) || origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    callback(new Error(`CORS blocked: ${origin}`));
+  },
   credentials: true,
 }));
 app.use(express.json());
