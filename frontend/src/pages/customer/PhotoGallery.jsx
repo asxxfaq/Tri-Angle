@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 
-const BASE = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace('/api', '') + '/images/';
+// Images are served from frontend/public/images/ for reliable Vercel CDN delivery
+const BASE = '/images/';
 const photos = Array.from({ length: 10 }, (_, i) => ({
   src: `${BASE}image${i + 1}.jpg`,
   alt: `TRI-ANGLE Team Photo ${i + 1}`,
