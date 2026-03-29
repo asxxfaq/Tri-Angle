@@ -239,7 +239,7 @@ const LandingPage = () => (
         <div style={{ maxWidth:720 }}>
           <div className="hero-badge animate-fade-down">
             <span>✦</span>
-            <span>12+ Years of Excellence in Catering Services</span>
+            <span>15+ Years of Excellence in Catering Services</span>
           </div>
           <h1 className="hero-title animate-fade-up">
             Kerala's Most Trusted<br />
@@ -254,7 +254,7 @@ const LandingPage = () => (
             <Link to="/book" className="btn btn-primary btn-lg pulse-glow">Book Now</Link>
           </div>
           <div className="hero-stats animate-fade-up" style={{ animationDelay:'0.45s' }}>
-            {[['400+','Team Members'],['12+','Years Experience'],['5000+','Events Served'],['100%','Satisfaction']].map(([v,l], i) => (
+            {[['400+','Team Members'],['15+','Years Experience'],['5000+','Events Served'],['100%','Satisfaction']].map(([v,l], i) => (
               <div key={l} className="hero-stat-item" style={{ animationDelay: `${0.5 + i * 0.1}s` }}>
                 <div className="hero-stat-value">{v}</div>
                 <div className="hero-stat-label">{l}</div>
@@ -288,7 +288,7 @@ const LandingPage = () => (
               Kasaragod's Premier<br /><span className="gradient-text">Catering Service</span>
             </h2>
             <p style={{ color:'var(--text-secondary)', lineHeight:1.95, marginBottom:16 }}>
-              With over 12 years of experience, TRI-ANGLE has become the most trusted name in catering services
+              With over 15 years of experience, TRI-ANGLE has become the most trusted name in catering services
               across Kasaragod and northern Kerala. Our team of 400+ part-time student staff brings energy,
               discipline, and professionalism to every event.
             </p>

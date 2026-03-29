@@ -23,7 +23,7 @@ const AboutPage = () => (
             </div>
 
             <p style={{ color:'var(--text-secondary)', lineHeight:1.95, marginBottom:16 }}>
-              With over 12 years of experience, TRI-ANGLE has become the most trusted name in catering services
+              With over 15 years of experience, TRI-ANGLE has become the most trusted name in catering services
               across Kasaragod and northern Kerala. Our team of 400+ part-time student staff brings energy,
               discipline, and professionalism to every event.
             </p>

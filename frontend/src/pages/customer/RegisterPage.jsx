@@ -10,6 +10,7 @@ const RegisterPage = () => {
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -71,7 +72,28 @@ const RegisterPage = () => {
               </div>
               <div className="form-group">
                 <label className="form-label">Password *</label>
-                <input type="password" className="form-input" name="password" placeholder="Min. 6 characters" value={form.password} onChange={handleChange} required disabled={otpSent} />
+                <div className="password-input-wrapper">
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    className="form-input" 
+                    name="password" 
+                    placeholder="Min. 6 characters" 
+                    value={form.password} 
+                    onChange={handleChange} 
+                    required 
+                    disabled={otpSent} 
+                    style={{ paddingRight: '46px' }}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    disabled={otpSent}
+                  >
+                    {showPassword ? '👁️‍🗨️' : '👁️'}
+                  </button>
+                </div>
               </div>
 
               {otpSent && (

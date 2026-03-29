@@ -16,6 +16,8 @@ const ResetPassword = () => {
     confirmPassword: '',
   });
   const [loading, setLoading] = useState(false);
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     if (!emailParam) {
@@ -74,26 +76,46 @@ const ResetPassword = () => {
 
             <div className="form-group">
               <label className="form-label">New Password</label>
-              <input
-                type="password"
-                className="form-input"
-                placeholder="••••••••"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                required
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showPass ? "text" : "password"}
+                  className="form-input"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  required
+                  style={{ paddingRight: '46px' }}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? '👁️‍🗨️' : '👁️'}
+                </button>
+              </div>
             </div>
 
             <div className="form-group">
               <label className="form-label">Confirm Password</label>
-              <input
-                type="password"
-                className="form-input"
-                placeholder="••••••••"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                required
-              />
+              <div className="password-input-wrapper">
+                <input
+                  type={showConfirm ? "text" : "password"}
+                  className="form-input"
+                  placeholder="••••••••"
+                  value={formData.confirmPassword}
+                  onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                  required
+                  style={{ paddingRight: '46px' }}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                >
+                  {showConfirm ? '👁️‍🗨️' : '👁️'}
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn btn-primary" disabled={loading} style={{ marginTop: '12px' }}>
